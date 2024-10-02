@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: com.knuddels:jtokkit:0.6.1:jar" external-system-id="SBT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/knuddels/jtokkit/0.6.1/jtokkit-0.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Library/Caches/Coursier/v1/https/repo1.maven.org/maven2/com/knuddels/jtokkit/0.6.1/jtokkit-0.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
