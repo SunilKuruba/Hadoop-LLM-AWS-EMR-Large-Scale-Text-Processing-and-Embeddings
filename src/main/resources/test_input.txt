@@ -1,1 +1,3 @@
-Hello world, this is a sample program to see how the program works. The output should be such that Hello and world words should be close to each other.
+Hello world, this is a sample program to see how the program works. 
+The output should be such that Hello world words should be close to each other.
+Hello words ends.
