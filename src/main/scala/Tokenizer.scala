@@ -4,6 +4,7 @@ import org.apache.hadoop.fs.Path
 import org.apache.hadoop.io.*
 import org.apache.hadoop.mapred.*
 import org.slf4j.{Logger, LoggerFactory}
+import com.typesafe.config.ConfigFactory
 
 import java.io.IOException
 import java.util
@@ -22,7 +23,7 @@ object Tokenizer {
       logger.info(s"Started running Mapper with key: $key")
 
       value.toString.toLowerCase().split("\\W+").filter(_.nonEmpty).foreach(token => {
-        val encodedString = encoder.encode(token)
+        val encodedString = encode(token)
         outputKey.set(token + "\t" + encodedString)
         output.collect(outputKey, one)
       })
@@ -48,47 +49,35 @@ object Tokenizer {
       encoder.decode(List(value).asJava)
     } catch {
       case e: Exception =>
-        throw new RuntimeException(s"Failed to encode token: $value", e)
+        throw new RuntimeException(s"Failed to decode token: $value", e)
     }
   }
 
-  // TODO: remove?
   def decode(token: util.List[Integer]): String = {
     encoder.decode(token)
   }
 
   @main
   def tokenizerMain(inputPath: String, outputPath: String): RunningJob = {
-    val conf: JobConf = new JobConf(this.getClass)
-    conf.setJobName("Tokenizer")
-    conf.set("fs.defaultFS", "hdfs://localhost:9000")
-    conf.setLong("mapreduce.input.fileinputformat.split.maxsize", 6710) // 64 MB
-    conf.setOutputKeyClass(classOf[Text])
-    conf.setOutputValueClass(classOf[IntWritable])
-    conf.setMapperClass(classOf[TokenizerMapper])
-    conf.setCombinerClass(classOf[IntSumReducer])
-    conf.setReducerClass(classOf[IntSumReducer])
-    conf.setInputFormat(classOf[TextInputFormat])
-    conf.setOutputFormat(classOf[TextOutputFormat[Text, IntWritable]])
-    FileInputFormat.setInputPaths(conf, new Path(inputPath))
-    FileOutputFormat.setOutputPath(conf, new Path(outputPath))
+    val config = ConfigFactory.load
+    val jobConf: JobConf = new JobConf(this.getClass)
+    jobConf.setJobName(config.getString("hadoop.tokenizer.job.name"))
+    jobConf.set("fs.defaultFS",config.getString("hadoop.fs.defaultFS"))
+    jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", 
+      config.getLong("hadoop.mapreduce.input.fileinputformat.split.maxsize"))
+    jobConf.setOutputKeyClass(classOf[Text])
+    jobConf.setOutputValueClass(classOf[IntWritable])
+    jobConf.setMapperClass(classOf[TokenizerMapper])
+    jobConf.setCombinerClass(classOf[IntSumReducer])
+    jobConf.setReducerClass(classOf[IntSumReducer])
+    jobConf.setInputFormat(classOf[TextInputFormat])
+    jobConf.setOutputFormat(classOf[TextOutputFormat[Text, IntWritable]])
+    FileInputFormat.setInputPaths(jobConf, new Path(inputPath))
+    FileOutputFormat.setOutputPath(jobConf, new Path(outputPath))
 
     logger.info("Starting the MapReduce job")
-    val job = JobClient.runJob(conf)
+    val job = JobClient.runJob(jobConf)
     logger.info("Job completed successfully")
     job
-  }
-
-  @main
-  def tokenizerTest(): Unit = {
-    val tokenizer = Encodings.newDefaultEncodingRegistry().getEncoding(EncodingType.CL100K_BASE)
-
-    val input = "Hello world! This is a sample program.\n We are going to check how close the Hello world is."
-    val tokenIds = encode(input)
-    val output = decode(tokenIds)
-
-    println(s"Original Text: $input")
-    println(s"Token IDs: $tokenIds")
-    println(s"Original text back: $output")
   }
 }

@@ -41,7 +41,7 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
     val thrown = intercept[Exception] {
       Tokenizer.decode(invalidEncodedValue)
     }
-    thrown.getMessage should include("Failed to encode token")
+    thrown.getMessage should include("Failed to decode token")
   }
 
   "Tokenizer" should "return an empty list for encoding an empty string" in {
@@ -167,5 +167,10 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
 
     // Validate output
     reducerOutput shouldBe expectedOutput
+  }
+
+  "Tokenizer MapReduce job" should "run e2e locally" in {
+    val random = Math.random()
+    Tokenizer.tokenizerMain("/input","/output/e2e_test_"+random)
   }
 }

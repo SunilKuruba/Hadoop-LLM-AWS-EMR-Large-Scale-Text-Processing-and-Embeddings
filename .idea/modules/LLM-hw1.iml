@@ -72,6 +72,7 @@
     <orderEntry type="library" name="sbt: com.twelvemonkeys.imageio:imageio-metadata:3.1.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.twelvemonkeys.imageio:imageio-psd:3.1.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.twelvemonkeys.imageio:imageio-tiff:3.1.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.typesafe:config:1.4.3:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-beanutils:commons-beanutils:1.9.4:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-cli:commons-cli:1.5.0:jar" level="project" />
     <orderEntry type="library" name="sbt: commons-codec:commons-codec:1.15:jar" level="project" />
