@@ -52,7 +52,8 @@ object Embedding {
       logger.info(s"Started running Embedding Mapper with key: $key")
 
       // Tokenize the input sentences
-      val sentences = value.toString.split("\n").toList
+      val sentences = value.toString.trim.split("\n").toList.filter(_.nonEmpty)
+      if(sentences.isEmpty) return
       val tokenizedSentences: List[List[Integer]] = sentences.map(sentence => Tokenizer.encode(sentence).asScala.toList)
 
       // Prepare input and label sequences

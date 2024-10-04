@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/LLM-hw1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/LLM-hw1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Utility.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utility.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +124,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.tokenizerMain">
+  <component name="RunManager" selected="Application.embeddingMain">
     <configuration name="embeddingMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="embeddingMain" />
       <module name="LLM-hw1" />
@@ -245,8 +240,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.tokenizerMain" />
         <item itemvalue="Application.embeddingMain" />
+        <item itemvalue="Application.tokenizerMain" />
         <item itemvalue="ScalaTest.EmbeddingSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
@@ -277,7 +272,7 @@
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
       <workItem from="1727839911141" duration="37771000" />
-      <workItem from="1728019274059" duration="15876000" />
+      <workItem from="1728019274059" duration="17590000" />
     </task>
     <servers />
   </component>
@@ -306,6 +301,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
+          <line>67</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LLM_hw1$TokenizerSpec.ic" NAME="TokenizerSpec Coverage Results" MODIFIED="1728023734075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
