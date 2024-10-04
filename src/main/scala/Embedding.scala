@@ -16,7 +16,12 @@ import java.io.IOException
 import scala.io.Source
 import scala.jdk.CollectionConverters.*
 
-
+// TODO: implement config file
+// TODO: add tests
+// TODO: add java doc
+// remove var
+// remove foreach, refactor
+// update ReadME
 object Embedding {
 
   class EmbeddingMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, Text] {
@@ -69,13 +74,12 @@ object Embedding {
       // Step 2: Get the number of rows (i.e., the vocabulary size) in the embedding matrix
       val numWords = embeddings.rows()
 
-      // Step 3: Iterate through each row (i.e., each word's embedding)
-      for (i <- 0 until numWords) {
-        val embeddingVector = embeddings.getRow(i) // Get the embedding vector for word i
-        val word = Tokenizer.decode(i)
-        outputKey.set(word+"\t"+i)
-        output.collect(outputKey, new Text(embeddingVector.toStringFull))
-      }
+      flattenedTokens.foreach(t=> {
+        val word = Tokenizer.decode(t)
+        outputKey.set(word + "\t" + t)
+        output.collect(outputKey, new Text(embeddings.getRow(t.longValue()).toStringFull))
+      })
+
   }
 
   class EmbeddingReducer extends MapReduceBase with Reducer[Text, Text, Text, Text] {

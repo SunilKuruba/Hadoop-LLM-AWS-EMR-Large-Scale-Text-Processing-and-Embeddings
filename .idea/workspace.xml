@@ -6,7 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7b1c43ae6f00988cc6f5$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7b1c43ae6f00988cc6f5.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$7b1c43ae6f00988cc6f5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d9cd6493b6fe8d080f26$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d9cd6493b6fe8d080f26.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$d9cd6493b6fe8d080f26.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +42,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,6 +107,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -103,7 +122,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.embeddingMain">
+  <component name="RunManager" selected="Application.tokenizerMain">
     <configuration name="Embedding" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Embedding" />
       <module name="LLM-hw1" />
@@ -114,7 +133,7 @@
     <configuration name="embeddingMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="embeddingMain" />
       <module name="LLM-hw1" />
-      <option name="PROGRAM_PARAMETERS" value="/input /output/try50" />
+      <option name="PROGRAM_PARAMETERS" value="/input /output/try54" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -136,7 +155,7 @@
     <configuration name="tokenizerMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="tokenizerMain" />
       <module name="LLM-hw1" />
-      <option name="PROGRAM_PARAMETERS" value="/input /output/try31" />
+      <option name="PROGRAM_PARAMETERS" value="/input /output/try56" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,11 +180,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.tokenizerMain" />
         <item itemvalue="Application.embeddingMain" />
         <item itemvalue="Application.embeddingTest" />
         <item itemvalue="Application.Embedding" />
         <item itemvalue="Application.test" />
-        <item itemvalue="Application.tokenizerMain" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +211,7 @@
       <workItem from="1727240036670" duration="3934000" />
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
-      <workItem from="1727839911141" duration="32605000" />
+      <workItem from="1727839911141" duration="37713000" />
     </task>
     <servers />
   </component>
@@ -227,12 +246,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>281</line>
+          <line>207</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>279</line>
+          <line>205</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -240,13 +259,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>88</line>
-          <option name="timeStamp" value="28" />
+          <line>175</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>249</line>
-          <option name="timeStamp" value="30" />
+          <line>47</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
