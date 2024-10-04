@@ -171,6 +171,10 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
 
   "Tokenizer MapReduce job" should "run e2e locally" in {
     val random = Math.random()
-    Tokenizer.tokenizerMain("/input","/output/e2e_test_"+random)
+    val job = Tokenizer.tokenizerMain("/input","/output/e2e_test_"+random)
+
+    // Validate that the job completed successfully
+    job.isComplete shouldBe true
+    job.isSuccessful shouldBe true
   }
 }

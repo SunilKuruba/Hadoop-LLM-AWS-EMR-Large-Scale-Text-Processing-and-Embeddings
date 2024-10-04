@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules/LLM-hw1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/LLM-hw1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/test_input_2.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Utility.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Utility.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +97,7 @@
     "Application.tokenizerTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ScalaTest.EmbeddingSpec.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should produce correct output for a sample input.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer should decode a single encoded integer successfully.executor": "Debug",
@@ -113,7 +116,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -122,10 +125,11 @@
       <recent name="$PROJECT_DIR$/project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources/input" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.embeddingMain">
+  <component name="RunManager" selected="Application.tokenizerMain">
     <configuration name="embeddingMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="embeddingMain" />
       <module name="LLM-hw1" />
@@ -149,6 +153,32 @@
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmbeddingSpec" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="LLM-hw1" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="testClassPath" value="EmbeddingSpec" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -206,47 +236,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TokenizerSpec.Tokenizer should handle decoding exceptions" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="LLM-hw1" />
-      <option name="VMParameters" value="" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="alternativeJrePath" />
-      <option name="alternativeJrePathEnabled" value="false" />
-      <option name="classpathModifications">
-        <list />
-      </option>
-      <option name="envs">
-        <map />
-      </option>
-      <option name="passParentEnvs" value="true" />
-      <option name="programParameters" value="" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="workingDirectory" value="$PROJECT_DIR$" />
-      <option name="testClassPath" value="TokenizerSpec" />
-      <option name="testName" value="Tokenizer should handle decoding exceptions" />
-      <option name="workingDirectory" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.embeddingMain" />
       <item itemvalue="Application.tokenizerMain" />
+      <item itemvalue="ScalaTest.EmbeddingSpec" />
       <item itemvalue="ScalaTest.TokenizerSpec" />
       <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
-      <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should handle decoding exceptions" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.embeddingMain" />
         <item itemvalue="Application.tokenizerMain" />
+        <item itemvalue="Application.embeddingMain" />
+        <item itemvalue="ScalaTest.EmbeddingSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
-        <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should handle decoding exceptions" />
       </list>
     </recent_temporary>
   </component>
@@ -274,7 +277,7 @@
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
       <workItem from="1727839911141" duration="37771000" />
-      <workItem from="1728019274059" duration="10218000" />
+      <workItem from="1728019274059" duration="15876000" />
     </task>
     <servers />
   </component>
