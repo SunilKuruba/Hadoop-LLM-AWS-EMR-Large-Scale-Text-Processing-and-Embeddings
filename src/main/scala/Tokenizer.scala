@@ -8,21 +8,35 @@ import java.io.IOException
 import java.util
 import scala.jdk.CollectionConverters.*
 
+// TODO: add more stats, progress for every 1k
 object Tokenizer {
-  private val encoding = Encodings.newDefaultEncodingRegistry().getEncoding(EncodingType.CL100K_BASE)
+  private val encoder = Encodings.newDefaultEncodingRegistry().getEncoding(EncodingType.CL100K_BASE)
 
   class TokenizerMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, IntWritable] {
     private final val one = new IntWritable(1)
-    private val word = new Text()
+    private val outputKey = new Text()
 
     @throws[IOException]
     override def map(key: LongWritable, value: Text, output: OutputCollector[Text, IntWritable], reporter: Reporter): Unit =
-      val tokens = encode(value.toString)
-      tokens.asScala.foreach { token =>
-        val decodedWord = decode(token)
-        word.set(decodedWord+"\t"+token)
-        output.collect(word, one)
-      }
+      value.toString.toLowerCase().split("\\W+").filter(_.nonEmpty).foreach(token => {
+        val encodedString = encoder.encode(token)
+        outputKey.set(token + "\t" + encodedString)
+        output.collect(outputKey, one)
+      })
+  }
+
+  class TokenizerMapper2 extends MapReduceBase with Mapper[LongWritable, Text, Text, IntWritable] {
+    private final val one = new IntWritable(1)
+    private val outputKey = new Text()
+
+    @throws[IOException]
+    override def map(key: LongWritable, value: Text, output: OutputCollector[Text, IntWritable], reporter: Reporter): Unit =
+      System.out.println("Running Sunil mapper")
+      value.toString.toLowerCase().split("\\W+").filter(_.nonEmpty).foreach(token => {
+        val encodedString = encoder.encode(token)
+        outputKey.set(token + "\t" + encodedString)
+        output.collect(outputKey, one)
+      })
   }
 
   class IntSumReducer extends MapReduceBase with Reducer[Text, IntWritable, Text, IntWritable] {
@@ -31,12 +45,22 @@ object Tokenizer {
       output.collect(key, new IntWritable(sum))
   }
 
+  class IntSumReducer2 extends MapReduceBase with Reducer[Text, ArrayWritable, Text, ArrayWritable] {
+    override def reduce(key: Text, values: util.Iterator[ArrayWritable], output: OutputCollector[Text, ArrayWritable], reporter: Reporter): Unit =
+      System.out.println("Running Sunil reducer")
+      output.collect(key, values.next())
+  }
+
   def encode(value: String): util.List[Integer] = {
-    encoding.encode(value)
+    encoder.encode(value)
   }
 
   def decode(token: Integer): String = {
-    encoding.decode(List(token).asJava)
+    encoder.decode(List(token).asJava)
+  }
+
+  def decode(token: util.List[Integer]): String = {
+    encoder.decode(token)
   }
 
   @main
@@ -48,11 +72,14 @@ object Tokenizer {
     //    conf.setLong("mapreduce.input.fileinputformat.split.maxsize", 6710) // 64 MB
     conf.setOutputKeyClass(classOf[Text])
     conf.setOutputValueClass(classOf[IntWritable])
-    conf.setMapperClass(classOf[TokenizerMapper])
-    conf.setCombinerClass(classOf[IntSumReducer])
-    conf.setReducerClass(classOf[IntSumReducer])
+//    conf.setMapperClass(classOf[TokenizerMapper])
+    conf.setMapperClass(classOf[TokenizerMapper2])
+//    conf.setCombinerClass(classOf[IntSumReducer])
+//    conf.setReducerClass(classOf[IntSumReducer])
+    conf.setReducerClass(classOf[IntSumReducer2])
     conf.setInputFormat(classOf[TextInputFormat])
-    conf.setOutputFormat(classOf[TextOutputFormat[Text, IntWritable]])
+//    conf.setOutputFormat(classOf[TextOutputFormat[Text, IntWritable]])
+    conf.setOutputFormat(classOf[TextOutputFormat[Text, ArrayWritable]])
     FileInputFormat.setInputPaths(conf, new Path(inputPath))
     FileOutputFormat.setOutputPath(conf, new Path(outputPath))
     JobClient.runJob(conf)
@@ -63,8 +90,8 @@ object Tokenizer {
     val tokenizer = Encodings.newDefaultEncodingRegistry().getEncoding(EncodingType.CL100K_BASE)
 
     val input = "Hello world! This is a sample program.\n We are going to check how close the Hello world is."
-    val tokenIds = tokenizer.encode(input)
-    val output =  tokenizer.decode(tokenIds)
+    val tokenIds = encode(input)
+    val output = decode(tokenIds)
 
     println(s"Original Text: $input")
     println(s"Token IDs: $tokenIds")
