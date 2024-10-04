@@ -1,10 +1,10 @@
 import com.knuddels.jtokkit.Encodings
 import com.knuddels.jtokkit.api.EncodingType
+import com.typesafe.config.ConfigFactory
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.io.*
 import org.apache.hadoop.mapred.*
 import org.slf4j.{Logger, LoggerFactory}
-import com.typesafe.config.ConfigFactory
 
 import java.io.IOException
 import java.util
@@ -20,7 +20,7 @@ object Tokenizer {
 
     @throws[IOException]
     override def map(key: LongWritable, value: Text, output: OutputCollector[Text, IntWritable], reporter: Reporter): Unit =
-      logger.info(s"Started running Mapper with key: $key")
+      logger.info(s"Started running Tokenizer Mapper with key: $key")
 
       value.toString.toLowerCase().split("\\W+").filter(_.nonEmpty).foreach(token => {
         val encodedString = encode(token)
@@ -61,10 +61,9 @@ object Tokenizer {
   def tokenizerMain(inputPath: String, outputPath: String): RunningJob = {
     val config = ConfigFactory.load
     val jobConf: JobConf = new JobConf(this.getClass)
-    jobConf.setJobName(config.getString("hadoop.tokenizer.job.name"))
+    jobConf.setJobName(config.getString("hadoop.tokenizer.jobName"))
     jobConf.set("fs.defaultFS",config.getString("hadoop.fs.defaultFS"))
-    jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", 
-      config.getLong("hadoop.mapreduce.input.fileinputformat.split.maxsize"))
+    jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", config.getLong("hadoop.blockSize"))
     jobConf.setOutputKeyClass(classOf[Text])
     jobConf.setOutputValueClass(classOf[IntWritable])
     jobConf.setMapperClass(classOf[TokenizerMapper])
