@@ -13,7 +13,7 @@ object Tokenizer {
   private val encoder = Encodings.newDefaultEncodingRegistry().getEncoding(EncodingType.CL100K_BASE)
   private val logger: Logger = LoggerFactory.getLogger(Tokenizer.getClass)
 
-  private class TokenizerMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, IntWritable] {
+  class TokenizerMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, IntWritable] {
     private final val one = new IntWritable(1)
     private val outputKey = new Text()
 
@@ -28,7 +28,7 @@ object Tokenizer {
       })
   }
 
-  private class IntSumReducer extends MapReduceBase with Reducer[Text, IntWritable, Text, IntWritable] {
+  class IntSumReducer extends MapReduceBase with Reducer[Text, IntWritable, Text, IntWritable] {
     override def reduce(key: Text, values: util.Iterator[IntWritable], output: OutputCollector[Text, IntWritable], reporter: Reporter): Unit =
       val sum = values.asScala.map(_.get()).sum;
       output.collect(key, new IntWritable(sum))
@@ -39,8 +39,7 @@ object Tokenizer {
       encoder.encode(value)
     }catch {
       case e: Exception =>
-        logger.error(s"Failed to encode token: $value", e)
-        throw e
+        throw new RuntimeException(s"Failed to encode token: $value", e)
     }
   }
 
@@ -49,8 +48,7 @@ object Tokenizer {
       encoder.decode(List(value).asJava)
     } catch {
       case e: Exception =>
-        logger.error(s"Failed to encode token: $value", e)
-        throw e
+        throw new RuntimeException(s"Failed to encode token: $value", e)
     }
   }
 
