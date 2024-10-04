@@ -12,18 +12,18 @@ import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.lossfunctions.LossFunctions
 import org.nd4j.linalg.ops.transforms.Transforms
 
-import java.io.{DataInput, DataOutput, IOException}
+import java.io.IOException
 import scala.io.Source
 import scala.jdk.CollectionConverters.*
 
 
 object Embedding {
 
-  class EmbeddingMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, ArrayWritable] {
+  class EmbeddingMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, Text] {
     private val outputKey = new Text()
 
     @throws[IOException]
-    override def map(key: LongWritable, value: Text, output: OutputCollector[Text, ArrayWritable], reporter: Reporter): Unit =
+    override def map(key: LongWritable, value: Text, output: OutputCollector[Text, Text], reporter: Reporter): Unit =
       val sentences = value.toString.split("\n").toList
       val tokenizedSentences: List[List[Integer]] = sentences.map(sentence => Tokenizer.encode(sentence).asScala.toList)
 
@@ -74,85 +74,54 @@ object Embedding {
         val embeddingVector = embeddings.getRow(i) // Get the embedding vector for word i
         val word = Tokenizer.decode(i)
         outputKey.set(word+"\t"+i)
-        val arrayValue = ArrayWritable(classOf[FloatWritable], embeddingVector.toFloatVector.map(value => new FloatWritable(value)))
-        output.collect(outputKey, arrayValue)
+        output.collect(outputKey, new Text(embeddingVector.toStringFull))
       }
   }
 
-  class EmbeddingReducer extends MapReduceBase with Reducer[Text, ArrayWritable, Text, ArrayWritable] {
-    override def reduce(key: Text, values: java.util.Iterator[ArrayWritable],
-                        output: OutputCollector[Text, ArrayWritable], reporter: Reporter): Unit = {
-      var sum: Array[Double] = null
-      var count = 0
-
-      // Iterate over the values to compute the sum of the arrays
-      while (values.hasNext) {
-        val arrayWritable = values.next()
-        val array = arrayWritable.get.map(_.asInstanceOf[DoubleWritable].get)
-
-        if (sum == null) {
-          sum = new Array[Double](array.length)
-        }
-
-        for (i <- array.indices) {
-          sum(i) += array(i)
-        }
-        count += 1
-      }
-
-      // Compute the average by dividing the sum by the count
-      val avg = sum.map(_ / count)
-
-      // Create an ArrayWritable with DoubleWritable values
-      val resultArrayWritable = new ArrayWritable(classOf[DoubleWritable])
-      resultArrayWritable.set(avg.map(new DoubleWritable(_)))
-
-      // Write the key and average array to the output
-      output.collect(key, resultArrayWritable)
+  class EmbeddingReducer extends MapReduceBase with Reducer[Text, Text, Text, Text] {
+    override def reduce(key: Text, values: java.util.Iterator[Text], output: OutputCollector[Text, Text], reporter: Reporter): Unit = {
+      val average = calculateAverage(values)
+      output.collect(key, new Text(average.mkString("[", ", ", "]")))
     }
   }
 
-  @main
-  def test(): Unit ={
-
-
-    val arrayValue = ArrayWritable(classOf[FloatWritable], Array(1,2,3,4,5).map(value => new FloatWritable(value)))
-    val iterator = Iterator(arrayValue)
-    iterator.foreach(x=> x)
-//    System.out.println(arrayValue)
+  def parseArray(text: Text): Array[Float] = {
+    // Convert Text to String and parse it to Array[Float]
+    text.toString
+      .replace("[", "") // Remove the opening bracket
+      .replace("]", "") // Remove the closing bracket
+      .split(",") // Split by comma
+      .map(_.trim.toFloat) // Trim whitespace and convert to Float
   }
 
-  def convertIteratorToList(iterator: java.util.Iterator[ArrayWritable]): List[Array[Float]] = {
-    // Convert java.util.Iterator to scala iterator
-    import scala.jdk.CollectionConverters._
-    val scalaIterator = iterator.asScala
+  def calculateAverage(iterator: java.util.Iterator[Text]): Array[Float] = {
+    // Initialize variables to store sum and count of arrays
+    var sumArray: Array[Float] = Array.empty
+    var count = 0
 
-    // Convert each ArrayWritable to Array[Float]
-    scalaIterator.map { arrayWritable =>
-      // Get the Array[Writable] from ArrayWritable and map to Array[Float]
-      arrayWritable.get().map(_.asInstanceOf[FloatWritable].get().toFloat)
-    }.toList
-  }
+    // Iterate over all Text entries
+    while (iterator.hasNext) {
+      val currentArray = parseArray(iterator.next())
 
-  // Usage example
-  def main(args: Array[String]): Unit = {
-    // Sample input for testing
-    val input: java.util.Iterator[ArrayWritable] = getSampleInput().asJava
+      // Initialize sumArray if it's the first time
+      if (sumArray.isEmpty) {
+        sumArray = new Array[Float](currentArray.length)
+      }
 
-    // Convert to List[Array[Float]]
-    val resultList: List[Array[Float]] = convertIteratorToList(input)
+      // Add currentArray to sumArray element-wise
+      for (i <- currentArray.indices) {
+        sumArray(i) += currentArray(i)
+      }
 
-    // Print the result
-    resultList.foreach(arr => println(arr.mkString(", ")))
-  }
+      count += 1
+    }
 
-  // Helper function to create sample input for testing
-  def getSampleInput(): Iterator[ArrayWritable] = {
-    val array1 = new ArrayWritable(classOf[FloatWritable], Array(new FloatWritable(1.0f), new FloatWritable(2.0f), new FloatWritable(3.0f)))
-    val array2 = new ArrayWritable(classOf[FloatWritable], Array(new FloatWritable(4.0f), new FloatWritable(5.0f), new FloatWritable(6.0f)))
-    val array3 = new ArrayWritable(classOf[FloatWritable], Array(new FloatWritable(7.0f), new FloatWritable(8.0f), new FloatWritable(9.0f)))
+    // Calculate the average for each element
+    for (i <- sumArray.indices) {
+      sumArray(i) /= count
+    }
 
-    Iterator(array1, array2, array3)
+    sumArray
   }
 
   @main
@@ -163,11 +132,11 @@ object Embedding {
     // Set the maximum split size
     //    conf.setLong("mapreduce.input.fileinputformat.split.maxsize", 6710) // 64 MB
     conf.setOutputKeyClass(classOf[Text])
-    conf.setOutputValueClass(classOf[ArrayWritable])
+    conf.setOutputValueClass(classOf[Text])
     conf.setMapperClass(classOf[EmbeddingMapper])
     conf.setReducerClass(classOf[EmbeddingReducer])
     conf.setInputFormat(classOf[TextInputFormat])
-    conf.setOutputFormat(classOf[TextOutputFormat[Text, ArrayWritable]])
+    conf.setOutputFormat(classOf[TextOutputFormat[Text, Text]])
     FileInputFormat.setInputPaths(conf, new Path(inputPath))
     FileOutputFormat.setOutputPath(conf, new Path(outputPath))
     JobClient.runJob(conf)

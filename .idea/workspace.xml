@@ -7,7 +7,6 @@
     <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +73,7 @@
   "keyToString": {
     "Application.Embedding.executor": "Run",
     "Application.Tokenizer.executor": "Run",
-    "Application.embeddingMain.executor": "Debug",
+    "Application.embeddingMain.executor": "Run",
     "Application.embeddingTest.executor": "Debug",
     "Application.main.executor": "Run",
     "Application.main2.executor": "Run",
@@ -104,7 +103,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.embeddingTest">
+  <component name="RunManager" selected="Application.embeddingMain">
     <configuration name="Embedding" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Embedding" />
       <module name="LLM-hw1" />
@@ -115,7 +114,7 @@
     <configuration name="embeddingMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="embeddingMain" />
       <module name="LLM-hw1" />
-      <option name="PROGRAM_PARAMETERS" value="/input /output/try44" />
+      <option name="PROGRAM_PARAMETERS" value="/input /output/try50" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -162,8 +161,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.embeddingTest" />
         <item itemvalue="Application.embeddingMain" />
+        <item itemvalue="Application.embeddingTest" />
         <item itemvalue="Application.Embedding" />
         <item itemvalue="Application.test" />
         <item itemvalue="Application.tokenizerMain" />
@@ -193,7 +192,7 @@
       <workItem from="1727240036670" duration="3934000" />
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
-      <workItem from="1727839911141" duration="29772000" />
+      <workItem from="1727839911141" duration="32605000" />
     </task>
     <servers />
   </component>
@@ -228,12 +227,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>246</line>
+          <line>281</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>244</line>
+          <line>279</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -241,16 +240,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>89</line>
+          <line>88</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>210</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="29" />
+          <line>249</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
