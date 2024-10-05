@@ -1,3 +1,6 @@
 # Project exclude paths
 /target/
 /src/test/resources/output
+/.bsp
+/.idea
+/project
