@@ -1,3 +1,4 @@
+import JobConfig.Environment.test
 import org.apache.hadoop.io.{IntWritable, LongWritable, Text}
 import org.apache.hadoop.mapred.*
 import org.scalatest.flatspec.AnyFlatSpec
@@ -8,20 +9,20 @@ import scala.collection.mutable
 import scala.jdk.CollectionConverters.*
 
 class TokenizerSpec extends AnyFlatSpec with Matchers {
+  JobConfig.environment = test
+
   "Tokenizer" should "encode a string successfully" in {
     val input = "hello"
     val encoded = Tokenizer.encode(input)
 
-    // Replace this with expected encoded result
     val expected = Tokenizer.decode(encoded)
     input shouldBe expected
   }
 
   "Tokenizer" should "decode a single encoded integer successfully" in {
-    val encoded = 15339 // This should be an actual encoded integer for "hello"
+    val encoded = 15339 // This is the actual encoded integer for "hello"
     val decoded = Tokenizer.decode(encoded)
 
-    // Replace this with expected decoded string
     decoded shouldBe "hello"
   }
 
@@ -32,7 +33,6 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
 
     val decoded = Tokenizer.decode(encoded)
 
-    // Replace this with expected decoded string
     decoded shouldBe "hello world"
   }
 
@@ -77,7 +77,7 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
     val reducer = new Tokenizer.IntSumReducer()
     reducer.reduce(key, values.iterator(), (k, v) => output.put(k, v), null)
 
-    output.get(new Text("hello")).get.toString shouldBe "6"
+    output(new Text("hello")).toString shouldBe "6"
   }
 
   "Tokenizer MapReduce chain" should "handle multiple jobs correctly" in {
@@ -133,13 +133,11 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
   }
 
   "Tokenizer MapReduce job" should "produce correct output for a sample input" in {
-    // Input data
     val inputText = List(
       new LongWritable(1) -> new Text("hello world"),
       new LongWritable(2) -> new Text("foo bar")
     )
 
-    // Expected output after map-reduce
     val expectedOutput = Map(
       new Text("hello\t[15339]") -> new IntWritable(1),
       new Text("world\t[14957]") -> new IntWritable(1),
@@ -147,7 +145,6 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
       new Text("bar\t[2308]") -> new IntWritable(1)
     )
 
-    // Mocked OutputCollector to collect mapper output
     val mapperOutput = new mutable.HashMap[Text, IntWritable]()
 
     // Run the Mapper
@@ -171,7 +168,7 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
 
   "Tokenizer MapReduce job" should "run e2e locally" in {
     val random = Math.random()
-    val job = Tokenizer.tokenizerMain("/input","/output/e2e_test_"+random)
+    val job = Tokenizer.tokenizerMain()
 
     // Validate that the job completed successfully
     job.isComplete shouldBe true

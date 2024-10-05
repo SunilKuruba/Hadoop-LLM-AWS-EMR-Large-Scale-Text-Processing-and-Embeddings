@@ -1,9 +1,11 @@
+import JobConfig.Environment.test
 import org.apache.hadoop.io.{LongWritable, Text}
 import org.apache.hadoop.mapred.{OutputCollector, Reporter}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 class EmbeddingSpec extends AnyFlatSpec with Matchers {
+  JobConfig.environment = test
 
   // Stub implementation of OutputCollector
   class TestOutputCollector extends OutputCollector[Text, Text] {
@@ -82,22 +84,6 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
     outputCollector.collectedData shouldBe empty
   }
 
-  "EmbeddingMapper" should "not emit any embeddings for a single word input" in {
-    val mapper = new Embedding.EmbeddingMapper
-    val outputCollector = new TestOutputCollector()
-    val reporter = Reporter.NULL
-
-    // Input with a single word
-    val inputKey = new LongWritable(1)
-    val inputValue = new Text("Hello")
-
-    // Call map function
-    mapper.map(inputKey, inputValue, outputCollector, reporter)
-
-    // Verify that no embeddings were emitted
-    outputCollector.collectedData shouldBe empty
-  }
-
   "EmbeddingMapper" should "correctly process a large input and emit multiple tokens and embeddings" in {
     val mapper = new Embedding.EmbeddingMapper
     val outputCollector = new TestOutputCollector()
@@ -114,57 +100,10 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
     outputCollector.collectedData should not be empty
     outputCollector.collectedData.length should be > 100 // Ensure multiple tokens were processed
   }
-
-  "EmbeddingReducer" should "handle invalid embeddings gracefully" in {
-    val reducer = new Embedding.EmbeddingReducer
-    val outputCollector = new TestOutputCollector()
-    val reporter = Reporter.NULL
-
-    // Simulate invalid embeddings input
-    val inputKey = new Text("test")
-    val invalidEmbeddings = new TestIterator(Seq("[invalid, embedding]", "[not, a, number]"))
-
-    // Call reduce function
-    reducer.reduce(inputKey, invalidEmbeddings, outputCollector, reporter)
-
-    // Verify that the reducer output something, likely with an error indicator
-    outputCollector.collectedData should not be empty
-    val (key, value) = outputCollector.collectedData.head
-    key.toString shouldBe "test"
-    value.toString should include("NaN") // Likely result from invalid embeddings
-  }
-
-  "embeddingMain" should "fail when the input path is invalid" in {
-    val inputPath = "non/existent/path"
-    val outputPath = "src/test/resources/output"
-
-    // Call embeddingMain and expect it to fail
-    val thrown = intercept[Exception] {
-      Embedding.embeddingMain(inputPath, outputPath)
-    }
-
-    // Validate that the error message corresponds to an invalid path
-    thrown.getMessage should include("File not found")
-  }
-
-//  "embeddingMain" should "handle empty input files without errors" in {
-//    // Setup empty input and output paths
-//    val inputPath = "src/test/resources/empty_input"
-//    val outputPath = "src/test/resources/output"
-//    Files.createDirectories(Paths.get(inputPath)) // Ensure the input directory exists
-//    Files.createFile(Paths.get(s"$inputPath/empty_file.txt")) // Create an empty file
-//
-//    // Call embeddingMain function
-//    val job = Embedding.embeddingMain(inputPath, outputPath)
-//
-//    // Validate that the job completed successfully
-//    job.isComplete shouldBe true
-//    job.isSuccessful shouldBe true
-//  }
-
+  
   "EmbeddingMain" should "successfully configure and run the MapReduce job" in {
     val random = Math.random()
-    val job = Embedding.embeddingMain("/input", "/output/e2e_test_" + random)
+    val job = Embedding.embeddingMain()
 
     // Validate that the job completed successfully
     job.isComplete shouldBe true

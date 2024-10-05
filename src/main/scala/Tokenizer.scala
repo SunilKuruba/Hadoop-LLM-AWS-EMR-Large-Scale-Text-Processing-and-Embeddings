@@ -25,7 +25,7 @@ object Tokenizer {
   private val logger: Logger = LoggerFactory.getLogger(Tokenizer.getClass)
 
   /**
-   * TokenizerMapper is a MapReduce Mapper class. It tokenizes input text, encodes each token, 
+   * TokenizerMapper is a MapReduce Mapper class. It tokenizes input text, encodes each token,
    * and emits the token and its encoded value as the key, with a value of 1.
    */
   class TokenizerMapper extends MapReduceBase with Mapper[LongWritable, Text, Text, IntWritable] {
@@ -115,7 +115,7 @@ object Tokenizer {
   }
 
   /**
-   * The main entry point for the MapReduce job. It sets up the job configuration, 
+   * The main entry point for the MapReduce job. It sets up the job configuration,
    * including the Mapper and Reducer classes, and starts the MapReduce job.
    *
    * @param inputPath  The input HDFS path containing the text files to tokenize.
@@ -123,7 +123,7 @@ object Tokenizer {
    * @return The RunningJob object representing the MapReduce job.
    */
   @main
-  def tokenizerMain(inputPath: String, outputPath: String): RunningJob = {
+  def tokenizerMain(): RunningJob = {
     val jobConf: JobConf = JobConfig.createJob("hadoop.tokenizer.jobName")
     jobConf.setOutputKeyClass(classOf[Text])
     jobConf.setOutputValueClass(classOf[IntWritable])

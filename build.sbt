@@ -24,6 +24,3 @@ lazy val root = project
       case x => MergeStrategy.first
     }
   )
-
-//Compile / run / mainClass := Some("tokenizerMain")
-//Compile / run / mainClass := Some("embeddingMain")

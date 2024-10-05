@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$05dc98c85cf52b8b5ae9$.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$05dc98c85cf52b8b5ae9.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/target/config-classes/$05dc98c85cf52b8b5ae9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/input/input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,15 +105,15 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ScalaTest.EmbeddingSpec.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should produce correct output for a sample input.executor": "Run",
-    "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Run",
+    "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Debug",
     "ScalaTest.TokenizerSpec.Tokenizer should decode a single encoded integer successfully.executor": "Debug",
     "ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully.executor": "Debug",
     "ScalaTest.TokenizerSpec.Tokenizer should handle decoding exceptions.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer should handle encoding exceptions.executor": "Run",
-    "ScalaTest.TokenizerSpec.executor": "Coverage",
+    "ScalaTest.TokenizerSpec.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/sunilkuruba/github/TokenGenerator/project",
+    "last_opened_file_path": "/Users/sunilkuruba/github/TokenGenerator/src/test/resources/input",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -117,6 +128,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources/input" />
       <recent name="$PROJECT_DIR$/project" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -124,15 +136,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.embeddingMain">
-    <configuration name="embeddingMain" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="embeddingMain" />
-      <module name="LLM-hw1" />
-      <option name="PROGRAM_PARAMETERS" value="/input /output/ready3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="ScalaTest.TokenizerSpec">
     <configuration name="tokenizerMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="tokenizerMain" />
       <module name="LLM-hw1" />
@@ -231,20 +235,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TokenizerSpec.Tokenizer should encode a string successfully" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="LLM-hw1" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="testClassPath" value="TokenizerSpec" />
+      <option name="testName" value="Tokenizer should encode a string successfully" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.embeddingMain" />
       <item itemvalue="Application.tokenizerMain" />
       <item itemvalue="ScalaTest.EmbeddingSpec" />
+      <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully" />
       <item itemvalue="ScalaTest.TokenizerSpec" />
       <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.embeddingMain" />
-        <item itemvalue="Application.tokenizerMain" />
-        <item itemvalue="ScalaTest.EmbeddingSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec" />
+        <item itemvalue="ScalaTest.EmbeddingSpec" />
         <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
+        <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully" />
+        <item itemvalue="Application.tokenizerMain" />
       </list>
     </recent_temporary>
   </component>
@@ -272,7 +303,7 @@
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
       <workItem from="1727839911141" duration="37771000" />
-      <workItem from="1728019274059" duration="17590000" />
+      <workItem from="1728019274059" duration="26546000" />
     </task>
     <servers />
   </component>
@@ -307,8 +338,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>67</line>
-          <option name="timeStamp" value="41" />
+          <line>85</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

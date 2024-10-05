@@ -133,7 +133,7 @@ object Embedding {
    * @return The RunningJob object representing the MapReduce job.
    */
   @main
-  def embeddingMain(inputPath: String, outputPath: String): RunningJob = {
+  def embeddingMain(): RunningJob = {
     val jobConf: JobConf = JobConfig.createJob("embeddingJob.jobName")
     jobConf.setOutputKeyClass(classOf[Text])
     jobConf.setOutputValueClass(classOf[Text])

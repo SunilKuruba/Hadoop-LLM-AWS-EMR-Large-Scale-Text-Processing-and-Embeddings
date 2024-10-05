@@ -2,6 +2,8 @@ import com.typesafe.config.ConfigFactory
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapred.{FileInputFormat, FileOutputFormat, JobConf}
 
+import java.time.LocalDateTime
+import java.util.UUID.randomUUID
 import scala.jdk.CollectionConverters.*
 
 /**
@@ -24,7 +26,7 @@ object JobConfig {
     case prod, local, test
 
   /** The environment in which the job is currently running. Defaults to `local`. */
-  val environment: Environment = Environment.local
+  var environment: Environment = Environment.local
 
   /**
    * Creates and configures a `JobConf` object for a Hadoop MapReduce job.
@@ -43,14 +45,15 @@ object JobConfig {
     jobConf.setJobName(config.getString(jobNamePath))
 
     // Set file system according to the environment
-    jobConf.set("fs.defaultFS", config.getString(s"hadoop.fileSystem.$environment"))
+    val fileSystem = config.getString(s"hadoop.fileSystem.$environment")
+    if(fileSystem.nonEmpty) jobConf.set("fs.defaultFS", fileSystem)
 
     // Set the maximum split size for input files
     jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", config.getLong("hadoop.blockSize"))
 
     // Set input and output paths based on the environment
     val inputPath = config.getString(s"io.inputdir.$environment")
-    val outputPath = config.getString(s"io.outputdir.$environment") + jobName + Math.random()
+    val outputPath = config.getString(s"io.outputdir.$environment") + jobName + randomUUID.toString
 
     // Configure input and output paths for the job
     FileInputFormat.setInputPaths(jobConf, new Path(inputPath))
