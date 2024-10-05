@@ -11,6 +11,7 @@ This project focuses on implementing a distributed solution for processing large
 
 The solution is built using Scala for the MapReduce logic, with two main classes handling different stages of the text processing pipeline. This project also aims to demonstrate the deployment of MapReduce jobs in AWS EMR clusters with multiple steps, using a single JAR file for the entire workflow.
 
+![img.png](img.png)
 ## Project Structure
 
 ```bash
@@ -18,7 +19,9 @@ The solution is built using Scala for the MapReduce logic, with two main classes
 │   ├── main
 │   │   ├── scala
 │   │   │   ├── Tokenizer.scala       # Tokenization logic for MapReduce
-│   │   │   ├── Embedding.scala       # Main logic for generating embeddings
+│   │   │   ├── Embedding.scala       # Generating embeddings MapReduce
+│   │   │   ├── JobConfig.scala       # Setting Job configuration
+│   │   │   ├── Utility.scala         # Utility class for text parsing
 │   │   ├── resources
 │   │       ├── application.conf      # Configuration file for Hadoop and job settings
 ├── README.md                         # Project documentation
