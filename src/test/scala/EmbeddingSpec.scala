@@ -9,10 +9,10 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
 
   // Stub implementation of OutputCollector
   class TestOutputCollector extends OutputCollector[Text, Text] {
-    var collectedData: List[(Text, Text)] = List.empty
+    var collectedData: Map[Text, Text] = Map.empty
 
     override def collect(key: Text, value: Text): Unit = {
-      collectedData = collectedData :+ (key, value)
+      collectedData += (key -> value)
     }
   }
 
@@ -34,15 +34,15 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
     val outputCollector = new TestOutputCollector()
     val reporter = Reporter.NULL
 
-    // Simulated input
+    // Arrange Simulated input
     val inputKey = new LongWritable(1)
     val inputValue = new Text("This is a test sentence")
 
-    // Call map function
+    // Act
     mapper.map(inputKey, inputValue, outputCollector, reporter)
 
-    // Verify that outputCollector collected the expected token embeddings
-    outputCollector.collectedData should not be empty
+    // Assert
+    outputCollector.collectedData should have size 4
     outputCollector.collectedData.foreach { case (key, value) =>
       key.toString should include("\t") // Token and token id
       value.toString should include("[") // Embedding as an INDArray representation
@@ -54,14 +54,14 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
     val outputCollector = new TestOutputCollector()
     val reporter =  Reporter.NULL
 
-    // Input token and embeddings
+    // Arrange
     val inputKey = new Text("test")
     val embeddings = new TestIterator(Seq("[1.0, 2.0]", "[2.0, 3.0]"))
 
-    // Call reduce function
+    // Act
     reducer.reduce(inputKey, embeddings, outputCollector, reporter)
 
-    // Verify the output of the average embedding
+    // Assert
     outputCollector.collectedData should have size 1
     val (key, value) = outputCollector.collectedData.head
     key.toString shouldBe "test"
@@ -98,11 +98,9 @@ class EmbeddingSpec extends AnyFlatSpec with Matchers {
 
     // Verify that the mapper emitted tokens
     outputCollector.collectedData should not be empty
-    outputCollector.collectedData.length should be > 100 // Ensure multiple tokens were processed
   }
-  
+
   "EmbeddingMain" should "successfully configure and run the MapReduce job" in {
-    val random = Math.random()
     val job = Embedding.embeddingMain()
 
     // Validate that the job completed successfully

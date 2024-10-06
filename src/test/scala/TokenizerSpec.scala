@@ -124,11 +124,11 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
     val tokenizerReducer = new Tokenizer.IntSumReducer()
 
     mapperOutput.groupBy(_._1).foreach { case (key, values) =>
-      val iter = values.map(_._2).iterator.asJava
+      val iter = values.values.iterator.asJava
       tokenizerReducer.reduce(key, iter, (k, v) => reducerOutput.put(k, v), null)
     }
 
-    // The output should be empty
+    // Assert
     reducerOutput shouldBe empty
   }
 
@@ -158,11 +158,11 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
     val tokenizerReducer = new Tokenizer.IntSumReducer()
 
     mapperOutput.groupBy(_._1).foreach { case (key, values) =>
-      val iter = values.map(_._2).iterator.asJava // This converts the Scala iterator to a Java one
+      val iter = values.values.iterator.asJava // This converts the Scala iterator to a Java one
       tokenizerReducer.reduce(key, iter, (k, v) => reducerOutput.put(new Text(k), new IntWritable(v.get())), null)
     }
 
-    // Validate output
+    // Assert
     reducerOutput shouldBe expectedOutput
   }
 

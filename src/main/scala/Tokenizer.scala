@@ -118,8 +118,6 @@ object Tokenizer {
    * The main entry point for the MapReduce job. It sets up the job configuration,
    * including the Mapper and Reducer classes, and starts the MapReduce job.
    *
-   * @param inputPath  The input HDFS path containing the text files to tokenize.
-   * @param outputPath The output HDFS path where the results will be stored.
    * @return The RunningJob object representing the MapReduce job.
    */
   @main

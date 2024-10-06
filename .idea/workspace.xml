@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="" />
+    <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="refactor code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +97,8 @@
     "Application.tokenizerTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ScalaTest.EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job.executor": "Debug",
+    "ScalaTest.EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings.executor": "Debug",
     "ScalaTest.EmbeddingSpec.executor": "Coverage",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should produce correct output for a sample input.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Debug",
@@ -97,6 +107,7 @@
     "ScalaTest.TokenizerSpec.Tokenizer should handle decoding exceptions.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer should handle encoding exceptions.executor": "Run",
     "ScalaTest.TokenizerSpec.executor": "Run",
+    "full.screen.before.presentation.mode": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/sunilkuruba/github/TokenGenerator/src/test/resources/input",
@@ -108,7 +119,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -123,14 +134,6 @@
     </key>
   </component>
   <component name="RunManager" selected="ScalaTest.TokenizerSpec">
-    <configuration name="tokenizerMain" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="tokenizerMain" />
-      <module name="LLM-hw1" />
-      <option name="PROGRAM_PARAMETERS" value="/input /output/ready0" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -163,6 +166,60 @@
       <option name="testKind" value="Class" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
       <option name="testClassPath" value="EmbeddingSpec" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="LLM-hw1" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="testClassPath" value="EmbeddingSpec" />
+      <option name="testName" value="EmbeddingMain should successfully configure and run the MapReduce job" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="LLM-hw1" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="testClassPath" value="EmbeddingSpec" />
+      <option name="testName" value="EmbeddingMapper should correctly tokenize input and emit token embeddings" />
       <option name="workingDirectory" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -221,47 +278,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TokenizerSpec.Tokenizer should encode a string successfully" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <module name="LLM-hw1" />
-      <option name="VMParameters" value="" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="alternativeJrePath" />
-      <option name="alternativeJrePathEnabled" value="false" />
-      <option name="classpathModifications">
-        <list />
-      </option>
-      <option name="envs">
-        <map />
-      </option>
-      <option name="passParentEnvs" value="true" />
-      <option name="programParameters" value="" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
-      <option name="testKind" value="Test name" />
-      <option name="workingDirectory" value="$PROJECT_DIR$" />
-      <option name="testClassPath" value="TokenizerSpec" />
-      <option name="testName" value="Tokenizer should encode a string successfully" />
-      <option name="workingDirectory" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Application.tokenizerMain" />
       <item itemvalue="ScalaTest.EmbeddingSpec" />
-      <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully" />
+      <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job" />
+      <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings" />
       <item itemvalue="ScalaTest.TokenizerSpec" />
       <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="ScalaTest.TokenizerSpec" />
+        <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job" />
         <item itemvalue="ScalaTest.EmbeddingSpec" />
+        <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings" />
         <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
-        <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully" />
-        <item itemvalue="Application.tokenizerMain" />
       </list>
     </recent_temporary>
   </component>
@@ -289,8 +319,17 @@
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
       <workItem from="1727839911141" duration="37771000" />
-      <workItem from="1728019274059" duration="32725000" />
+      <workItem from="1728019274059" duration="42877000" />
     </task>
+    <task id="LOCAL-00001" summary="update .gitignore file">
+      <option name="closed" value="true" />
+      <created>1728154124781</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728154124781</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,19 +358,13 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/Embedding.scala</url>
-          <line>85</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update .gitignore file" />
+    <MESSAGE value="refactor code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LLM_hw1$EmbeddingSpec.ic" NAME="EmbeddingSpec Coverage Results" MODIFIED="1728099095392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
-    <SUITE FILE_PATH="coverage/LLM_hw1$TokenizerSpec.ic" NAME="TokenizerSpec Coverage Results" MODIFIED="1728099222892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LLM_hw1$EmbeddingSpec.ic" NAME="EmbeddingSpec Coverage Results" MODIFIED="1728170074935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/LLM_hw1$TokenizerSpec.ic" NAME="TokenizerSpec Coverage Results" MODIFIED="1728170190622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

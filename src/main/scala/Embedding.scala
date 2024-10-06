@@ -11,6 +11,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions
 import org.slf4j.{Logger, LoggerFactory}
 
 import java.io.IOException
+import java.time.Instant
 import scala.jdk.CollectionConverters.*
 
 /**
@@ -49,8 +50,8 @@ object Embedding {
      */
     @throws[IOException]
     override def map(key: LongWritable, value: Text, output: OutputCollector[Text, Text], reporter: Reporter): Unit = {
-      logger.info(s"Started running Embedding Mapper with key: $key")
-
+      logger.info(s"Started running Embedding Mapper with key: $key at ${Instant.now()}")
+      
       // Tokenize the input sentences
       val sentences = value.toString.trim.split("\n").toList.filter(_.nonEmpty)
       if(sentences.isEmpty) return
@@ -84,7 +85,7 @@ object Embedding {
 
       // Train the model
       logger.info(s"Model training started for key: $key")
-      val numEpochs = appConfig.getInt("embeddingJob.testNumEpochs")
+      val numEpochs = appConfig.getInt("embeddingJob.numEpochs")
       (0 until numEpochs).foreach { i =>
         if(i == numEpochs / 2) logger.info(s"Model training 50% completed for key: $key")
         model.fit(inputFeatures, outputLabels)
@@ -96,10 +97,11 @@ object Embedding {
       // Emit token and its learned embedding
       flattenedTokens.foreach(token => {
         val word = Tokenizer.decode(token)
-        outputKey.set(word + "\t" + token)
-        outputValue.set(embeddings.getRow(token.longValue()).toStringFull)
+        val outputKey = new Text(word + "\t" + token)
+        val outputValue = new Text(embeddings.getRow(token.longValue()).toStringFull)
         output.collect(outputKey, outputValue)
       })
+      logger.info(s"Ending Embedding Mapper with key: $key at ${Instant.now()}")
     }
   }
 
@@ -128,8 +130,6 @@ object Embedding {
    * The main entry point for the MapReduce job. It sets up the job configuration,
    * including the Mapper and Reducer classes, and starts the MapReduce job to learn embeddings.
    *
-   * @param inputPath  The input HDFS path containing the text files for embedding.
-   * @param outputPath The output HDFS path where the results will be stored.
    * @return The RunningJob object representing the MapReduce job.
    */
   @main

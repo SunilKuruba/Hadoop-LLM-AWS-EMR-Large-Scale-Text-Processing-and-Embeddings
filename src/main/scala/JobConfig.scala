@@ -47,9 +47,11 @@ object JobConfig {
     // Set file system according to the environment
     val fileSystem = config.getString(s"hadoop.fileSystem.$environment")
     if(fileSystem.nonEmpty) jobConf.set("fs.defaultFS", fileSystem)
+    jobConf.setNumReduceTasks(config.getInt(s"hadoop.numReducer"))
 
     // Set the maximum split size for input files
-    jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", config.getLong("hadoop.blockSize"))
+//    jobConf.setLong("mapreduce.input.fileinputformat.split.maxsize", config.getLong("hadoop.maxSplitSize"))
+    jobConf.setLong("mapreduce.input.fileinputformat.split.minsize", config.getLong("hadoop.maxSplitSize"))
 
     // Set input and output paths based on the environment
     val inputPath = config.getString(s"io.inputdir.$environment")
