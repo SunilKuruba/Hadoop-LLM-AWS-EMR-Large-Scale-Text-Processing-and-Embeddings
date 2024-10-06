@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="refactor code">
+    <list default="true" id="63900032-53bc-4b98-a7ef-c1993da09d1a" name="Changes" comment="update application.conf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Embedding.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Embedding.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/JobConfig.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Tokenizer.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/EmbeddingSpec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/TokenizerSpec.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +99,7 @@
     "ScalaTest.EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings.executor": "Debug",
     "ScalaTest.EmbeddingSpec.executor": "Coverage",
     "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should produce correct output for a sample input.executor": "Run",
-    "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Debug",
+    "ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally.executor": "Run",
     "ScalaTest.TokenizerSpec.Tokenizer should decode a single encoded integer successfully.executor": "Debug",
     "ScalaTest.TokenizerSpec.Tokenizer should encode a string successfully.executor": "Debug",
     "ScalaTest.TokenizerSpec.Tokenizer should handle decoding exceptions.executor": "Run",
@@ -133,7 +131,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="ScalaTest.TokenizerSpec">
+  <component name="RunManager" selected="ScalaTest.EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -287,11 +285,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="ScalaTest.TokenizerSpec" />
         <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMain should successfully configure and run the MapReduce job" />
+        <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
+        <item itemvalue="ScalaTest.TokenizerSpec" />
         <item itemvalue="ScalaTest.EmbeddingSpec" />
         <item itemvalue="ScalaTest.EmbeddingSpec.EmbeddingMapper should correctly tokenize input and emit token embeddings" />
-        <item itemvalue="ScalaTest.TokenizerSpec.Tokenizer MapReduce job should run e2e locally" />
       </list>
     </recent_temporary>
   </component>
@@ -319,7 +317,7 @@
       <workItem from="1727246363647" duration="6240000" />
       <workItem from="1727829228973" duration="7338000" />
       <workItem from="1727839911141" duration="37771000" />
-      <workItem from="1728019274059" duration="42877000" />
+      <workItem from="1728019274059" duration="46311000" />
     </task>
     <task id="LOCAL-00001" summary="update .gitignore file">
       <option name="closed" value="true" />
@@ -329,7 +327,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728154124781</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor code">
+      <option name="closed" value="true" />
+      <created>1728174240829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728174240829</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add more input files">
+      <option name="closed" value="true" />
+      <created>1728174263013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728174263013</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update application.conf">
+      <option name="closed" value="true" />
+      <created>1728174656076</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728174656076</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,7 +383,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update .gitignore file" />
     <MESSAGE value="refactor code" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor code" />
+    <MESSAGE value="add more input files" />
+    <MESSAGE value="update application.conf" />
+    <option name="LAST_COMMIT_MESSAGE" value="update application.conf" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LLM_hw1$EmbeddingSpec.ic" NAME="EmbeddingSpec Coverage Results" MODIFIED="1728170074935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

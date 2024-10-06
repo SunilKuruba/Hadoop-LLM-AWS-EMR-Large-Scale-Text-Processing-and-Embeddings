@@ -26,7 +26,7 @@ object JobConfig {
     case prod, local, test
 
   /** The environment in which the job is currently running. Defaults to `local`. */
-  var environment: Environment = Environment.local
+  var environment: Environment = Environment.prod
 
   /**
    * Creates and configures a `JobConf` object for a Hadoop MapReduce job.

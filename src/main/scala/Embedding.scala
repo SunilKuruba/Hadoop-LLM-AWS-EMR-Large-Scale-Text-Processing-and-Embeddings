@@ -51,7 +51,7 @@ object Embedding {
     @throws[IOException]
     override def map(key: LongWritable, value: Text, output: OutputCollector[Text, Text], reporter: Reporter): Unit = {
       logger.info(s"Started running Embedding Mapper with key: $key at ${Instant.now()}")
-      
+
       // Tokenize the input sentences
       val sentences = value.toString.trim.split("\n").toList.filter(_.nonEmpty)
       if(sentences.isEmpty) return

@@ -50,7 +50,15 @@ To run this project, you will need the following:
    
 2. Prepare AWS
 * Create S3 bucket to store the JARs and input data. Make a note of the S3 paths.
-* Load the input files in the S3 folder
+* Load the input training files of your choice in the S3 folder
+```bash
+├── jar
+│   └── common.jar                    # Common jar file
+├── input
+│   ├── novel.txt                     # Input text file
+│   ├── subtitles.csv                 # Input CSV file
+├── output                            # Output folder (initially empty)
+```
 
 3. Select Environment </br>
    Update the `JobConfig.environment` variable according to your use case, then follow these environment-specific steps: 
@@ -62,29 +70,32 @@ To run this project, you will need the following:
 | Test  | Ensure Hadoop processes are running on your laptop. No configuration updates required. Checkout test/resources for input and output.              |
 
 4. Build the Project </br>
-    Use sbt to compile the project and produce the necessary JAR files. To create separate executables for the Embedding and Tokenizer programs, configure the build.sbt file by setting embeddingMain and tokenizerMain as individual main classes
+    Use sbt to compile the project and produce the necessary JAR file. You should be able to find your JAR in the relative path `target/scala-3.5.0/..`
    ```bash
     sbt clean compile assembly
-5. Upload JAR and Input Data to S3
+5. Upload JAR to S3
    Upload your generated JAR file and text corpus to S3:
 
     ```bash
-    aws s3 cp <target/scala-3.5.0/hadoop-llm-aws-emr-jar-1.jar> s3://your-bucket-name/
-    aws s3 cp <target/scala-3.5.0/hadoop-llm-aws-emr-jar-2.jar> s3://your-bucket-name/
-    aws s3 cp input-data.txt s3://your-bucket-name/
+    aws s3 cp <target/scala-3.5.0/common.jar> s3://your-bucket-name/
+    aws s3 cp input-data.txt s3://your-bucket-name/  # Optional step
 6. Create an AWS EMR Cluster
    Launch an EMR cluster with the following configurations:
-
-* Instance type: Choose based on your processing needs (e.g., m5.xlarge).
-* Application bundle: Only hadoop is required
-* Number of nodes: At least 3 nodes for distributed parallelism.
-* Add steps: Two steps to be added. One for Tokenizer jar and another for Embedding jar.
-* Submit the Job to EMR
+   * Instance type: Select an instance type based on your specific processing requirements (e.g., m5.xlarge).
+   * Application: Install Hadoop only.
+   * Add steps:
+     * Tokenizer step:
+       * Jar location: [input S3 common JAR path]
+       * Jar arguments: tokenizerMain
+     * Embedding step:
+       * Jar location: [input S3 common JAR path]
+       * Jar arguments: embeddingMain
+   * Submit the job to EMR for processing.
 
 7. Check Results
-   Once the steps complete, retrieve the results from S3 and inspect the generated embeddings:
+   Monitor the job for completion. Once the steps complete, retrieve the results from S3 output path and inspect the generated embeddings:
 
-    ```bash
+   ```bash
     aws s3 cp s3://your-bucket-name/output/ ./output --recursive
    ```
    
