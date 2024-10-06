@@ -39,7 +39,7 @@ object Utility {
      * @param text The `Text` object to be parsed.
      * @return An array of `Float` values parsed from the input text.
      */
-    def parseArray(text: Text): Array[Float] = {
+    private def parseArray(text: Text): Array[Float] = {
         text.toString
           .replace("[", "") // Remove the opening bracket
           .replace("]", "") // Remove the closing bracket

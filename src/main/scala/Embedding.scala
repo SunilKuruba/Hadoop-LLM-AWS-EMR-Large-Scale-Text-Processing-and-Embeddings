@@ -24,10 +24,6 @@ object Embedding {
   /** Logger for logging important events and errors during the embedding process. */
   private val logger: Logger = LoggerFactory.getLogger(Tokenizer.getClass)
 
-  /** Key and value used for output during MapReduce tasks. */
-  private val outputKey = new Text()
-  private val outputValue = new Text()
-
   /** Configuration object to load application settings. */
   private val appConfig = ConfigFactory.load
 
@@ -121,7 +117,7 @@ object Embedding {
      */
     override def reduce(key: Text, values: java.util.Iterator[Text], output: OutputCollector[Text, Text], reporter: Reporter): Unit = {
       val average = Utility.calculateAverage(values)
-      outputValue.set(average.mkString("[", ", ", "]"))
+      val outputValue = new Text(average.mkString("[", ", ", "]"))
       output.collect(key, outputValue)
     }
   }

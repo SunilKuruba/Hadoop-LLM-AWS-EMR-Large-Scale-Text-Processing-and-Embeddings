@@ -1,4 +1,4 @@
-import JobConfig.Environment.test
+import JobConfig.Environment.{local, test}
 import org.apache.hadoop.io.{IntWritable, LongWritable, Text}
 import org.apache.hadoop.mapred.*
 import org.scalatest.flatspec.AnyFlatSpec
@@ -167,7 +167,6 @@ class TokenizerSpec extends AnyFlatSpec with Matchers {
   }
 
   "Tokenizer MapReduce job" should "run e2e locally" in {
-    val random = Math.random()
     val job = Tokenizer.tokenizerMain()
 
     // Validate that the job completed successfully
