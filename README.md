@@ -5,6 +5,8 @@
 **Email**: skuru@uic.edu <br />
 **Instructor**: Mark Grechanik
 
+[Youtube video](https://youtu.be/TylcxCHhEik)
+
 ## Project Summary
 
 This project focuses on implementing a distributed solution for processing large-scale text data using Hadoop on AWS EMR. The system leverages custom MapReduce jobs to tokenize large corpora and generate vector embeddings using a custom Token Generator. The goal is to enable efficient parallel processing for tasks like natural language understanding, large language model (LLM) training, and text analysis by harnessing the scalable resources of AWS Elastic MapReduce (EMR).
