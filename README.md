@@ -1,11 +1,8 @@
-# Hadoop-LLM-AWS-EMR: Large-Scale Text Processing and Embeddings
+# Apache Hadoop and AWS EMR: Distributed LLM Text Processing and Embeddings
 
 **Author**: Sunil Kuruba <br />
-**UIN**: 659375633 <br />
-**Email**: skuru@uic.edu <br />
-**Instructor**: Mark Grechanik
-
-[Youtube video](https://youtu.be/TylcxCHhEik)
+**Instructor**: Mark Grechanik <br />
+**Youtube video**: https://youtu.be/TylcxCHhEik <br />
 
 ## Project Summary
 
